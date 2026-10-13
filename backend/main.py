@@ -1,18 +1,26 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware  # importa o middleware de CORS
-from rotas import clientes
+from fastapi.staticfiles import StaticFiles
+from fastapi.middleware.cors import CORSMiddleware
+from rotas import clientes, senioridade, tatuadores, agendamentos, estilos
+import os
 
 app = FastAPI()
 
-# Configura quais origens têm permissão de chamar a API
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],      # "*" = qualquer origem (usado em desenvolvimento)
-    allow_methods=["*"],      # permite todos os métodos (GET, POST, PUT, DELETE)
-    allow_headers=["*"],      # permite todos os cabeçalhos
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
+os.makedirs("uploads", exist_ok=True)
+app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
+
 app.include_router(clientes.router)
+app.include_router(senioridade.router)
+app.include_router(tatuadores.router)
+app.include_router(agendamentos.router)
+app.include_router(estilos.router)
 
 
 @app.get("/")

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Estilos</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="clientes.html">Estúdio de Tatuagem</a>
+
+            <div class="navbar-nav">
+                <a class="nav-link" href="clientes.html">Clientes</a>
+                <a class="nav-link" href="senioridade.html">Senioridade</a>
+                <a class="nav-link" href="tatuadores.html">Tatuadores</a>
+                <a class="nav-link active" href="estilos.html">Estilos</a>
+                <a class="nav-link" href="agendamentos.html">Agendamentos</a>
+                
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <h1 class="mb-4">Cadastro de Estilos</h1>
+
+        <div class="card mb-4">
+            <div class="card-header">Dados do estilo</div>
+
+            <div class="card-body">
+                <form id="form-estilo">
+                    <input type="hidden" id="idestilo">
+
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            id="descricao"
+                            placeholder="Ex.: Blackwork"
+                            required
+                        >
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
+                        id="btn-submit-estilo"
+                    >
+                        Cadastrar
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        onclick="limparFormulario()"
+                    >
+                        Limpar
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">Estilos cadastrados</div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="corpo-tabela"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/estilos.js"></script>
+</body>
+</html>
