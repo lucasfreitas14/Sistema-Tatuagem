@@ -10,7 +10,7 @@ class Senioridade(BaseModel):
     nome: str
 
 
-@router.get("/senioridade")
+@router.get("")
 def listar_senioridades():
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
@@ -24,7 +24,7 @@ def listar_senioridades():
     return resultado
 
 
-@router.get("/senioridade/{id}")
+@router.get("/{id}")
 def buscar_senioridade(id: int):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
@@ -44,7 +44,7 @@ def buscar_senioridade(id: int):
     return resultado
 
 
-@router.post("/senioridade")
+@router.post("")
 def cadastrar_senioridade(senioridade: Senioridade):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -66,7 +66,7 @@ def cadastrar_senioridade(senioridade: Senioridade):
     }
 
 
-@router.put("/senioridade/{id}")
+@router.put("/{id}")
 def atualizar_senioridade(id: int, senioridade: Senioridade):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -87,7 +87,7 @@ def atualizar_senioridade(id: int, senioridade: Senioridade):
     return {"mensagem": "Senioridade atualizada com sucesso"}
 
 
-@router.delete("/senioridade/{id}")
+@router.delete("/{id}")
 def excluir_senioridade(id: int):
     conexao = conectar()
     cursor = conexao.cursor()

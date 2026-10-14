@@ -20,7 +20,7 @@ class EstilosDoTatuador(BaseModel):
 
 
 
-@router.get("/tatuadores")
+@router.get("")
 def listar_tatuadores():
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
@@ -47,7 +47,7 @@ def listar_tatuadores():
 
     return resultado
 
-@router.get("/tatuadores/{id}")
+@router.get("/{id}")
 def buscar_tatuador(id: int):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
@@ -67,7 +67,7 @@ def buscar_tatuador(id: int):
     return resultado
 
 
-@router.post("/tatuadores")
+@router.post("")
 def cadastrar_tatuador(tatuador: Tatuador):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -98,7 +98,7 @@ def cadastrar_tatuador(tatuador: Tatuador):
 
 
 
-@router.put("/tatuadores/{id}")
+@router.put("/{id}")
 def atualizar_tatuador(id: int, tatuador: Tatuador):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -156,7 +156,7 @@ def atualizar_tatuador(id: int, tatuador: Tatuador):
     return {"mensagem": "Tatuador atualizado com sucesso"}
 
 
-@router.delete("/tatuadores/{id}")
+@router.delete("/{id}")
 def excluir_tatuador(id: int):
     conexao = conectar()
     cursor = conexao.cursor()
@@ -191,7 +191,7 @@ def excluir_tatuador(id: int):
         cursor.close()
         conexao.close()
 
-@router.get("/tatuadores/{id}/estilos")
+@router.get("/{id}/estilos")
 def listar_estilos_tatuador(id: int):
     conexao = conectar()
     cursor = conexao.cursor(dictionary=True)
@@ -210,7 +210,7 @@ def listar_estilos_tatuador(id: int):
 
     return estilos
 
-@router.put("/tatuadores/{id}/estilos")
+@router.put("/{id}/estilos")
 def atualizar_estilos_tatuador(id: int, dados: EstilosDoTatuador):
     conexao = conectar()
     cursor = conexao.cursor()
