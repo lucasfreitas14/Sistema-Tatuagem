@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 13/10/2026 às 05:04
+-- Tempo de geração: 14/10/2026 às 03:58
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -47,7 +47,8 @@ CREATE TABLE `agendamento` (
 
 INSERT INTO `agendamento` (`idagendamento`, `idcliente`, `idtatuador`, `dataagendamento`, `horaagendamento`, `descricaotatuagem`, `desenhoaprovado`, `valortatuagem`, `status`) VALUES
 (1, 1, 3, '2025-05-10', '14:00:00', 'Mandala no braço', NULL, 350.00, 'pendente'),
-(6, 2, 1, '2026-10-13', '15:00:00', 'Um lindo coração e dentro dele os nomes Igor + Lucas. Os dois são 2 almas gêmeas.', '6_coração.png', 500.00, 'pendente');
+(6, 2, 1, '2026-10-13', '15:00:00', 'Um lindo coração e dentro dele os nomes Igor + Lucas. Os dois são 2 almas gêmeas.', '6_coração.png', 500.00, 'pendente'),
+(7, 2, 1, '2026-03-14', '10:00:00', 'Samurai', '7_wallpaper.png', 300.00, 'pendente');
 
 -- --------------------------------------------------------
 
@@ -219,7 +220,7 @@ ALTER TABLE `tatuador_estilo`
 -- AUTO_INCREMENT de tabela `agendamento`
 --
 ALTER TABLE `agendamento`
-  MODIFY `idagendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idagendamento` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `cliente`
