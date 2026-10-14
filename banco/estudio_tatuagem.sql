@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 14/10/2026 às 03:58
+-- Tempo de geração: 14/10/2026 às 21:43
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -166,6 +166,32 @@ INSERT INTO `tatuador_estilo` (`idtatuador`, `idestilo`, `dataestilo`) VALUES
 (3, 4, '2024-01-10'),
 (8, 1, NULL);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `idusuario` int(11) NOT NULL,
+  `nome` varchar(100) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `tipo` enum('admin','funcionario','cliente') NOT NULL DEFAULT 'funcionario',
+  `idcliente` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `usuario`
+--
+
+INSERT INTO `usuario` (`idusuario`, `nome`, `email`, `senha`, `tipo`, `idcliente`) VALUES
+(1, 'Usuario Teste', 'teste12@exemplo.com', '$2b$12$9daForZ3qSWlI/3ytJ3Ct.13DgSOce91W3AXJwOl8NohQ9K8rY2Fq', 'funcionario', NULL),
+(4, 'Lucas Bellato', 'lucasbellato01@gmail.com', '$2b$12$IpdM2Z4/EIaQQRDkLcOX5e9RdN08BPyZOwoVjsUyoPBlBRLRuHEzy', 'funcionario', NULL),
+(5, 'Administrador', 'admin@estudio.com', '$2b$12$/BLSQyLR4k5HFf8zRJRYHesruyTo6eHH4BotmRZqCv2ajP0z7rPye', 'admin', NULL),
+(6, 'Funcionario Teste', 'funcionario.teste@estudio.com', '$2b$12$JgGYfgwYLDJp/r.nEeGSTutxjP1w6vaC7NUdlZTkFeGgTJiWfnYC2', 'funcionario', NULL),
+(7, 'Funcionário Teste 2', 'funcionario.teste2@estudio.com', '$2b$12$PZVGOt0MnyzV62M2tnhqbev/LSOGrDFxhlemQBECoRGmf/IjFeiQq', 'funcionario', NULL);
+
 --
 -- Índices para tabelas despejadas
 --
@@ -213,6 +239,14 @@ ALTER TABLE `tatuador_estilo`
   ADD KEY `idestilo` (`idestilo`);
 
 --
+-- Índices de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`idusuario`),
+  ADD UNIQUE KEY `email` (`email`),
+  ADD KEY `idcliente` (`idcliente`);
+
+--
 -- AUTO_INCREMENT para tabelas despejadas
 --
 
@@ -247,6 +281,12 @@ ALTER TABLE `tatuador`
   MODIFY `idtatuador` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- Restrições para tabelas despejadas
 --
 
@@ -269,6 +309,12 @@ ALTER TABLE `tatuador`
 ALTER TABLE `tatuador_estilo`
   ADD CONSTRAINT `tatuador_estilo_ibfk_1` FOREIGN KEY (`idtatuador`) REFERENCES `tatuador` (`idtatuador`),
   ADD CONSTRAINT `tatuador_estilo_ibfk_2` FOREIGN KEY (`idestilo`) REFERENCES `estilo` (`idestilo`);
+
+--
+-- Restrições para tabelas `usuario`
+--
+ALTER TABLE `usuario`
+  ADD CONSTRAINT `usuario_ibfk_1` FOREIGN KEY (`idcliente`) REFERENCES `cliente` (`idcliente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
