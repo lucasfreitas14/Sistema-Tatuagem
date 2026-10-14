@@ -1,7 +1,7 @@
 
 // Endereço da API
 const API = 'http://127.0.0.1:8000'
-
+protegerPagina()
 // Elementos do formulário
 const formAgendamento = document.getElementById('form-agendamento')
 const botaoSubmit = document.getElementById('btn-submit-agendamento')
@@ -20,7 +20,7 @@ function limparFormulario() {
 
 // Carrega os clientes no select
 async function carregarClientes() {
-  const resposta = await fetch(`${API}/clientes`)
+  const resposta = await fetchAutenticado(`${API}/clientes`)
   const clientes = await resposta.json()
 
   const select = document.getElementById('idcliente')
@@ -33,7 +33,7 @@ async function carregarClientes() {
 
 // Carrega os tatuadores no select
 async function carregarTatuadores() {
-  const resposta = await fetch(`${API}/tatuadores`)
+  const resposta = await fetchAutenticado(`${API}/tatuadores`)
   const tatuadores = await resposta.json()
 
   const select = document.getElementById('idtatuador')
@@ -49,7 +49,7 @@ carregarTatuadores()
 
 // Lista os agendamentos na tabela
 async function listarAgendamentos() {
-  const resposta = await fetch(`${API}/agendamentos`)
+  const resposta = await fetchAutenticado(`${API}/agendamentos`)
   const agendamentos = await resposta.json()
 
   const corpo = document.getElementById('corpo-tabela')
@@ -102,13 +102,13 @@ formAgendamento.addEventListener('submit', async (e) => {
   let idParaUpload = idAgendamento
 
   if (idAgendamento) {
-    await fetch(`${API}/agendamentos/${idAgendamento}`, {
+    await fetchAutenticado(`${API}/agendamentos/${idAgendamento}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(agendamento)
     })
   } else {
-    const resposta = await fetch(`${API}/agendamentos`, {
+    const resposta = await fetchAutenticado(`${API}/agendamentos`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(agendamento)
@@ -124,7 +124,7 @@ formAgendamento.addEventListener('submit', async (e) => {
     const formData = new FormData()
     formData.append('arquivo', arquivo)
 
-    await fetch(`${API}/agendamentos/${idParaUpload}/desenho`, {
+    await fetchAutenticado(`${API}/agendamentos/${idParaUpload}/desenho`, {
       method: 'POST',
       body: formData
     })
@@ -162,6 +162,6 @@ function preencherFormularioEdicao(agendamento) {
 async function deletarAgendamento(id) {
   if (!confirm('Tem certeza que deseja excluir este agendamento?')) return
 
-  await fetch(`${API}/agendamentos/${id}`, { method: 'DELETE' })
+  await fetchAutenticado(`${API}/agendamentos/${id}`, { method: 'DELETE' })
   listarAgendamentos()
 }

@@ -1,6 +1,5 @@
-
 const API = "http://127.0.0.1:8000";
-
+protegerPagina()
 const formulario = document.getElementById("form-senioridade");
 const campoId = document.getElementById("idsenioridade");
 const campoNome = document.getElementById("nome");
@@ -9,7 +8,7 @@ const corpoTabela = document.getElementById("corpo-tabela");
 
 async function listarSenioridades() {
     try {
-        const resposta = await fetch(`${API}/senioridade`);
+        const resposta = await fetchAutenticado(`${API}/senioridade`);
 
         if (!resposta.ok) {
             throw new Error("Erro ao carregar senioridades");
@@ -59,7 +58,7 @@ formulario.addEventListener("submit", async (evento) => {
     const metodo = id ? "PUT" : "POST";
 
     try {
-        const resposta = await fetch(url, {
+        const resposta = await fetchAutenticado(url, {
             method: metodo,
             headers: {
                 "Content-Type": "application/json"
@@ -84,7 +83,7 @@ formulario.addEventListener("submit", async (evento) => {
 
 async function editarSenioridade(id) {
     try {
-        const resposta = await fetch(`${API}/senioridade/${id}`);
+        const resposta = await fetchAutenticado(`${API}/senioridade/${id}`);
 
         if (!resposta.ok) {
             throw new Error("Não foi possível buscar a senioridade.");
@@ -109,7 +108,7 @@ async function excluirSenioridade(id) {
     }
 
     try {
-        const resposta = await fetch(`${API}/senioridade/${id}`, {
+        const resposta = await fetchAutenticado(`${API}/senioridade/${id}`, {
             method: "DELETE"
         });
 

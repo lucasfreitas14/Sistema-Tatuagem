@@ -1,6 +1,6 @@
 
 const API = "http://127.0.0.1:8000";
-
+protegerPagina()
 const formulario = document.getElementById("form-tatuador");
 const campoId = document.getElementById("idtatuador");
 const campoNome = document.getElementById("nometatuador");
@@ -13,7 +13,7 @@ const corpoTabela = document.getElementById("corpo-tabela");
 
 async function carregarSenioridades() {
     try {
-        const resposta = await fetch(`${API}/senioridade`);
+        const resposta = await fetchAutenticado(`${API}/senioridade`);
 
         if (!resposta.ok) {
             throw new Error("Erro ao carregar senioridades.");
@@ -39,7 +39,7 @@ async function carregarSenioridades() {
 
 async function listarTatuadores() {
     try {
-        const resposta = await fetch(`${API}/tatuadores`);
+        const resposta = await fetchAutenticado(`${API}/tatuadores`);
 
         if (!resposta.ok) {
             throw new Error("Erro ao carregar tatuadores.");
@@ -100,7 +100,7 @@ formulario.addEventListener("submit", async (evento) => {
     const metodo = id ? "PUT" : "POST";
 
     try {
-        const resposta = await fetch(url, {
+        const resposta = await fetchAutenticado(url, {
             method: metodo,
             headers: {
                 "Content-Type": "application/json"
@@ -120,7 +120,7 @@ const estilosSelecionados = Array.from(
     document.querySelectorAll(".checkbox-estilo:checked")
 ).map(checkbox => Number(checkbox.value));
 
-const respostaEstilos = await fetch(
+const respostaEstilos = await fetchAutenticado(
     `${API}/tatuadores/${idTatuadorSalvo}/estilos`,
     {
         method: "PUT",
@@ -149,7 +149,7 @@ await listarTatuadores();
 
 async function editarTatuador(id) {
     try {
-        const resposta = await fetch(`${API}/tatuadores/${id}`);
+        const resposta = await fetchAutenticado(`${API}/tatuadores/${id}`);
 
         if (!resposta.ok) {
             throw new Error("Não foi possível buscar o tatuador.");
@@ -164,7 +164,7 @@ async function editarTatuador(id) {
         campoTelefone.value = tatuador.telefone ?? "";
         campoSenioridade.value = tatuador.idsenioridade;
 
-const respostaEstilos = await fetch(`${API}/tatuadores/${id}/estilos`);
+const respostaEstilos = await fetchAutenticado(`${API}/tatuadores/${id}/estilos`);
 const estilosVinculados = await respostaEstilos.json();
 
 document.querySelectorAll(".checkbox-estilo").forEach(checkbox => {
@@ -187,7 +187,7 @@ async function excluirTatuador(id) {
     }
 
     try {
-        const resposta = await fetch(`${API}/tatuadores/${id}`, {
+        const resposta = await fetchAutenticado(`${API}/tatuadores/${id}`, {
             method: "DELETE"
         });
 
@@ -225,7 +225,7 @@ async function iniciarPagina() {
 iniciarPagina();
 
 async function carregarEstilos() {
-    const resposta = await fetch(`${API}/estilos`);
+    const resposta = await fetchAutenticado(`${API}/estilos`);
     const estilos = await resposta.json();
 
     const lista = document.getElementById("lista-estilos");

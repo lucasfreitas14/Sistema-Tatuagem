@@ -1,7 +1,7 @@
 const API = "http://127.0.0.1:8000";
-
+protegerPagina()
 async function listarEstilos() {
-    const resposta = await fetch(`${API}/estilos`);
+    const resposta = await fetchAutenticado(`${API}/estilos`);
     const estilos = await resposta.json();
 
     const corpo = document.getElementById("corpo-tabela");
@@ -36,7 +36,7 @@ document.getElementById("form-estilo").addEventListener("submit", async function
     const metodo = id ? "PUT" : "POST";
     const url = id ? `${API}/estilos/${id}` : `${API}/estilos`;
 
-    const resposta = await fetch(url, {
+    const resposta = await fetchAutenticado(url, {
         method: metodo,
         headers: {
             "Content-Type": "application/json"
@@ -67,7 +67,7 @@ async function excluirEstilo(id) {
         return;
     }
 
-    const resposta = await fetch(`${API}/estilos/${id}`, {
+    const resposta = await fetchAutenticado(`${API}/estilos/${id}`, {
         method: "DELETE"
     });
 
