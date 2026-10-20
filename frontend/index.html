@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,6 +5,126 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Estúdio de Tatuagem</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --fundo: #0d0b12;
+      --superficie: #17131f;
+      --roxo: #9b5cff;
+      --roxo-claro: #b88aff;
+      --texto: #f5f2fa;
+      --texto-secundario: #b5adbf;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% 25%, #291641 0%, transparent 55%),
+        var(--fundo);
+      color: var(--texto);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .navbar {
+      background: rgba(13, 11, 18, 0.9) !important;
+      border-bottom: 1px solid rgba(184, 138, 255, 0.18);
+      padding: 18px 0;
+      backdrop-filter: blur(12px);
+    }
+
+    .navbar-brand {
+      font-size: 1.25rem;
+      font-weight: 750;
+      letter-spacing: 0.3px;
+    }
+
+    .btn {
+      border-radius: 10px;
+      font-weight: 650;
+      padding: 10px 20px;
+      transition: 0.25s ease;
+    }
+
+    .btn-light {
+      background: transparent;
+      border: 1px solid var(--roxo);
+      color: var(--texto);
+    }
+
+    .btn-light:hover {
+      background: var(--roxo);
+      border-color: var(--roxo);
+      color: white;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #9b5cff, #7535c7);
+      border: 1px solid transparent;
+      color: white;
+      box-shadow: 0 8px 25px rgba(155, 92, 255, 0.2);
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #b080ff, #8b4be0);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 10px 30px rgba(155, 92, 255, 0.35);
+      transform: translateY(-3px);
+    }
+
+    .container.py-5 {
+      max-width: 950px;
+      padding-top: clamp(100px, 18vh, 180px) !important;
+      padding-bottom: 100px !important;
+    }
+
+    h1.display-4 {
+      max-width: 850px;
+      margin: 0 auto 24px;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.12;
+      background: linear-gradient(90deg, #ffffff 15%, #c8a6ff 75%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      max-width: 690px;
+      margin: 0 auto;
+      color: var(--texto-secundario);
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.9;
+    }
+
+    .btn-lg {
+      margin-top: 30px !important;
+      padding: 14px 30px;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand {
+        font-size: 1rem;
+      }
+
+      .container.py-5 {
+        padding-top: 100px !important;
+      }
+
+      h1.display-4 {
+        letter-spacing: -1px;
+      }
+    }
+  </style>
 </head>
 <body>
 

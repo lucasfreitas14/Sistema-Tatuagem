@@ -2,9 +2,215 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clientes — Estúdio de Tatuagem</title>
   <!-- Bootstrap: biblioteca de estilos prontos -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --fundo: #0d0b12;
+      --superficie: #17131f;
+      --roxo: #9b5cff;
+      --roxo-claro: #b88aff;
+      --texto: #f5f2fa;
+      --texto-secundario: #b5adbf;
+      --borda: #332641;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, #291641 0%, transparent 45%),
+        var(--fundo);
+      color: var(--texto);
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    .navbar {
+      background: rgba(13, 11, 18, 0.96) !important;
+      border-bottom: 1px solid rgba(184, 138, 255, 0.18);
+      padding: 14px 0;
+    }
+
+    .navbar-brand {
+      font-weight: 750;
+      letter-spacing: 0.2px;
+    }
+
+    .navbar-nav {
+      align-items: center;
+      gap: 4px;
+    }
+
+    .navbar-nav .nav-link {
+      padding: 8px 12px !important;
+      border-radius: 8px;
+      color: var(--texto-secundario);
+      transition: 0.2s ease;
+    }
+
+    .navbar-nav .nav-link:hover,
+    .navbar-nav .nav-link.active {
+      background: rgba(155, 92, 255, 0.12);
+      color: var(--roxo-claro);
+    }
+
+    .btn {
+      border-radius: 9px;
+      font-weight: 650;
+      transition: 0.2s ease;
+    }
+
+    .btn-outline-light {
+      border-color: #514061;
+      color: var(--texto);
+    }
+
+    .btn-outline-light:hover {
+      background: #2a2037;
+      border-color: var(--roxo);
+      color: white;
+    }
+
+    main.container {
+      padding-top: 38px !important;
+      padding-bottom: 50px !important;
+    }
+
+    h1 {
+      margin-bottom: 28px;
+      font-size: clamp(2rem, 4vw, 2.7rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(90deg, #ffffff, #c8a6ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    #form-cliente {
+      padding: 22px;
+      margin-bottom: 30px !important;
+      border: 1px solid var(--borda);
+      border-radius: 15px;
+      background: rgba(23, 19, 31, 0.9);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.16);
+    }
+
+    .form-control,
+    .form-select {
+      min-height: 43px;
+      border: 1px solid #40334e;
+      border-radius: 9px;
+      background-color: #100d16;
+      color: var(--texto);
+    }
+
+    .form-control::placeholder {
+      color: #94899f;
+      opacity: 1;
+    }
+
+    .form-control:focus,
+    .form-select:focus {
+      border-color: var(--roxo);
+      background-color: #100d16;
+      color: var(--texto);
+      box-shadow: 0 0 0 3px rgba(155, 92, 255, 0.15);
+    }
+
+    .form-control:-webkit-autofill,
+    .form-control:-webkit-autofill:hover,
+    .form-control:-webkit-autofill:focus {
+      -webkit-text-fill-color: var(--texto);
+      -webkit-box-shadow: 0 0 0 1000px #100d16 inset;
+    }
+
+    .btn-primary {
+      border: 1px solid transparent;
+      background: linear-gradient(135deg, #9b5cff, #7535c7);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      border-color: transparent;
+      background: linear-gradient(135deg, #b080ff, #8b4be0);
+      color: white;
+      box-shadow: 0 6px 18px rgba(155, 92, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    .table {
+      margin-top: 10px;
+      overflow: hidden;
+      border-color: var(--borda);
+      color: var(--texto);
+      vertical-align: middle;
+      --bs-table-color: var(--texto);
+      --bs-table-bg: rgba(23, 19, 31, 0.92);
+      --bs-table-border-color: var(--borda);
+      --bs-table-striped-bg: #1d1727;
+      --bs-table-striped-color: var(--texto);
+      --bs-table-hover-bg: #292036;
+      --bs-table-hover-color: white;
+    }
+
+    .table thead th {
+      padding: 15px 12px;
+      background: #21172e;
+      color: var(--roxo-claro);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .table tbody td {
+      padding: 13px 12px;
+    }
+
+    .table-bordered {
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table .btn {
+      margin: 2px;
+    }
+
+    @media (max-width: 991px) {
+      .navbar-nav {
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+
+      .navbar .container {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 767px) {
+      main.container {
+        padding-top: 25px !important;
+      }
+
+      #form-cliente {
+        padding: 16px;
+      }
+
+      main.container > .table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+    }
+  </style>
 </head>
 <body>
   
@@ -18,7 +224,7 @@
       <a class="nav-link" href="tatuadores.html">Tatuadores</a>
       <a class="nav-link" href="estilos.html">Estilos</a>
       <a class="nav-link me-3" href="agendamentos.html">Agendamentos</a>
-<button onclick="sair()" class="btn btn-outline-light btn-sm">Sair</button>
+      <button onclick="sair()" class="btn btn-outline-light btn-sm">Sair</button>
     </div>
   </div>
 </nav>
